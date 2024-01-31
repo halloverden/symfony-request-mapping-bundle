@@ -1,0 +1,23 @@
+{
+    "name": "halloverden/request-mapping-bundle",
+    "description": "Symfony bundle to map request data to objects",
+    "type": "symfony-bundle",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "HalloVerden\\RequestMappingBundle\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Tom Roar Furunes",
+            "email": "tom.roar@halloverden.no"
+        }
+    ],
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "require": {
+        "php": ">=8.2",
+        "symfony/framework-bundle": "^6.4|^7.0"
+    }
+}
