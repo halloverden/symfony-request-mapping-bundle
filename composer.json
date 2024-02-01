@@ -8,6 +8,11 @@
             "HalloVerden\\RequestMappingBundle\\": "src/"
         }
     },
+    "autoload-dev": {
+        "psr-4": {
+            "HalloVerden\\RequestMappingBundle\\Tests\\": "tests/"
+        }
+    },
     "authors": [
         {
             "name": "Tom Roar Furunes",
@@ -18,6 +23,12 @@
     "prefer-stable": true,
     "require": {
         "php": ">=8.2",
-        "symfony/framework-bundle": "^6.4|^7.0"
+        "symfony/framework-bundle": "^6.4|^7.0",
+        "symfony/validator": "^6.4|^7.0",
+        "jms/serializer-bundle": "^5.4",
+        "halloverden/symfony-http-exceptions": "^2.1"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^10.5"
     }
 }
