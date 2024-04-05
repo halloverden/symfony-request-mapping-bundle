@@ -28,7 +28,7 @@ abstract class AbstractRequestDataHandler implements RequestDataHandlerInterface
    * @inheritDoc
    */
   public function handle(array $data, ArgumentMetadata $argument): mixed {
-    $data = $this->filterData($data, $this->getAllowedProperties());
+    $data = $this->filterData($this->transformData($data), $this->getAllowedProperties());
     $this->validate($data);
 
     if (!$type = $argument->getType()) {
@@ -45,6 +45,15 @@ abstract class AbstractRequestDataHandler implements RequestDataHandlerInterface
    */
   protected static function createCollectionConstraint(array $fields): Collection {
     return new Collection(fields: $fields, allowExtraFields: true);
+  }
+
+  /**
+   * @param array $data
+   *
+   * @return array
+   */
+  protected function transformData(array $data): array {
+    return $data;
   }
 
   /**
