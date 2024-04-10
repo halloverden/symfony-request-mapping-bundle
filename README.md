@@ -47,8 +47,8 @@ Usage
 ============
 
 1. Create a handler that implements `RequestDataHandlerInterface` (or extend `AbstractRequestDataHandler`)
-2. Create a class that represents the payload or query of the request
-3. Use `MapRequestPayload` or `MapRequestQuery` attribute on parameters into the controller.
+2. Create a class that represents the payload, query or headers of the request
+3. Use `MapRequestPayload`, `MapRequestQuery` or `MapRequestHeaders` attribute on parameters into the controller.
     ```php
     <?php
     
