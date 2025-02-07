@@ -7,6 +7,7 @@ use HalloVerden\RequestMappingBundle\Attribute\MapRequestHeaders;
 use HalloVerden\RequestMappingBundle\Attribute\MapRequestPayload;
 use HalloVerden\RequestMappingBundle\Attribute\MapRequestQuery;
 use HalloVerden\RequestMappingBundle\Handler\RequestDataHandlerInterface;
+use Symfony\Component\HttpFoundation\Exception\JsonException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Controller\ValueResolverInterface;
 use Symfony\Component\HttpKernel\ControllerMetadata\ArgumentMetadata;
@@ -50,7 +51,11 @@ final readonly class RequestMappingValueResolver implements ValueResolverInterfa
    */
   private function getData(Request $request, MapRequest $mapRequestAttribute): array {
     if ($mapRequestAttribute instanceof MapRequestPayload) {
-      return $request->getPayload()->all();
+      try {
+        return $request->getPayload()->all();
+      } catch (JsonException) {
+        return [];
+      }
     }
 
     if ($mapRequestAttribute instanceof MapRequestQuery) {
