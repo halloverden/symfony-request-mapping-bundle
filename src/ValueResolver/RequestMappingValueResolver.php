@@ -39,7 +39,7 @@ final readonly class RequestMappingValueResolver implements ValueResolverInterfa
 
     $data = $this->getData($request, $attribute);
 
-    $handler = $this->handlers->get($attribute->handler);
+    $handler = $this->handlers->get($attribute->handler ?? $argument->getType() ?? throw new \RuntimeException('Handler not found'));
     return [$handler->handle($data, $argument)];
   }
 
