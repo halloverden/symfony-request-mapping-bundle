@@ -38,19 +38,20 @@ final readonly class RequestMappingValueResolver implements ValueResolverInterfa
       throw new \LogicException(sprintf('Mapping variadic argument "$%s" is not supported.', $argument->getName()));
     }
 
-    $data = $this->getData($request, $attribute);
+    $data = $this->getData($request, $attribute, $argument);
 
     $handler = $this->handlers->get($attribute->handler ?? $argument->getType() ?? throw new \RuntimeException('Handler not found'));
     return [$handler->handle($data, $argument)];
   }
 
   /**
-   * @param Request    $request
-   * @param MapRequest $mapRequestAttribute
+   * @param Request          $request
+   * @param MapRequest       $mapRequestAttribute
+   * @param ArgumentMetadata $argument
    *
    * @return array
    */
-  private function getData(Request $request, MapRequest $mapRequestAttribute): array {
+  private function getData(Request $request, MapRequest $mapRequestAttribute, ArgumentMetadata $argument): array {
     if ($mapRequestAttribute instanceof MapRequestPayload) {
       try {
         return $request->getPayload()->all();
@@ -68,7 +69,7 @@ final readonly class RequestMappingValueResolver implements ValueResolverInterfa
     }
 
     if ($mapRequestAttribute instanceof MapRequestFile) {
-      return $request->files->all();
+      return $mapRequestAttribute->key ? [$argument->getName() => $request->files->get($mapRequestAttribute->key)] : $request->files->all();
     }
 
     throw new \LogicException('%s is not a supported request attribute', \get_debug_type($mapRequestAttribute));
