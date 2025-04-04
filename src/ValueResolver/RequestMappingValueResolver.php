@@ -3,6 +3,7 @@
 namespace HalloVerden\RequestMappingBundle\ValueResolver;
 
 use HalloVerden\RequestMappingBundle\Attribute\MapRequest;
+use HalloVerden\RequestMappingBundle\Attribute\MapRequestFile;
 use HalloVerden\RequestMappingBundle\Attribute\MapRequestHeaders;
 use HalloVerden\RequestMappingBundle\Attribute\MapRequestPayload;
 use HalloVerden\RequestMappingBundle\Attribute\MapRequestQuery;
@@ -64,6 +65,10 @@ final readonly class RequestMappingValueResolver implements ValueResolverInterfa
 
     if ($mapRequestAttribute instanceof MapRequestHeaders) {
       return $request->headers->all();
+    }
+
+    if ($mapRequestAttribute instanceof MapRequestFile) {
+      return $request->files->all();
     }
 
     throw new \LogicException('%s is not a supported request attribute', \get_debug_type($mapRequestAttribute));
