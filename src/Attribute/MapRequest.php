@@ -11,7 +11,7 @@ abstract class MapRequest extends ValueResolver {
    * MapRequest constructor.
    */
   public function __construct(
-    public readonly string $handler
+    public readonly ?string $handler = null
   ) {
     parent::__construct(RequestMappingValueResolver::class);
   }
