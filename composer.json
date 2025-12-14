@@ -23,8 +23,8 @@
     "prefer-stable": true,
     "require": {
         "php": ">=8.2",
-        "symfony/framework-bundle": "^6.4|^7.0",
-        "symfony/validator": "^6.4|^7.0",
+        "symfony/framework-bundle": "^6.4|^7.0|^8.0",
+        "symfony/validator": "^6.4|^7.0|^8.0",
         "jms/serializer-bundle": "^5.4",
         "halloverden/symfony-http-exceptions": "^2.1"
     },
